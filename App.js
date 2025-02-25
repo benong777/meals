@@ -13,9 +13,32 @@ export default function App() {
     <>
       <StatusBar style='auto' />
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="MealsCategories" component={CategoryScreen} />
-          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
+        <Stack.Navigator
+          screenOptions={{
+              headerTintColor: 'white',
+              headerStyle: { backgroundColor: '#351401' },
+              contentStyle: { backgroundColor: '#3f2f25' }
+          }}
+        >
+          <Stack.Screen
+            name="MealsCategories"
+            component={CategoryScreen}
+            options={{
+              title: 'All Categories',
+            }}
+          />
+          <Stack.Screen
+            name="MealsOverview"
+            component={MealsOverviewScreen}
+            // // Dynamically set the screen header title using route/navigation
+            // // * Note: params below was provided when navigating from the previous screen (MealsCategories)
+            // options={({ route, navigation }) => {
+            //   const catId = route.params.categoryId;
+            //   return {
+            //     title: catId
+            //   }
+            // }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
       {/* <CategoryScreen /> */}

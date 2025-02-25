@@ -10,6 +10,7 @@ function CategoryGridTile({title, color, onPress}) {
           styles.button,
           // To get opacity effect in iOS when pressed
           // since android_ripple effect above doesn't work on iOS
+          // * Note: 'pressed' is provided with the Pressable component
           pressed ? styles.buttonPressed : null,
         ]}
       >
