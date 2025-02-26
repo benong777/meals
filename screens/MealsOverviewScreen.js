@@ -1,7 +1,9 @@
+import { useLayoutEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
 import MealItem from '../components/MealItem';
-import { MEALS } from '../data/dummy-data';
+import { MEALS, CATEGORIES } from '../data/dummy-data';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 /*
   route (React Navigation):
@@ -19,7 +21,27 @@ import { MEALS } from '../data/dummy-data';
         }
 
 */
-function MealsOverviewScreen({ route }) {
+function MealsOverviewScreen({ route, navigation }) {
+  /* 
+    useEffect executes after the component function was executed for the first
+    time. Thus, you'll see that the header title will load the original title
+    first ('MealsOverview'), and then this useEffect will execute after to set
+    the header title to the 'categoryTitle'.
+
+    To fix this, use 'useLayoutEffect' instead. It will load simultaneously with
+    the MealsOverviewScreen loading instead of after.
+  */
+  useLayoutEffect(() => {
+    const categoryTitle = CATEGORIES.find(
+      (category) => category.id === catId
+    ).title;
+
+    // Set the screen (category) title dynamically
+    navigation.setOptions({
+      title: categoryTitle
+    });
+  }, [catId, navigation]);
+
   const catId = route.params.categoryId;
   /*
     CategoryIds is an array with multiple categories,
@@ -37,6 +59,7 @@ function MealsOverviewScreen({ route }) {
       duration: item.duration,
       complexity: item.complexity,
       affordability: item.affordability,
+      navigation: navigation,
     }
     return (
       <MealItem {...mealItemProps} />

@@ -1,10 +1,16 @@
 import { View, Text, Pressable, Image, StyleSheet, Platform } from 'react-native';
 
-function MealItem({title, imageUrl, duration, complexity, affordability }) {
+function MealItem({title, imageUrl, duration, complexity, affordability, navigation }) {
+  function mealPressHandler() {
+    console.log('Meal item pressed!');
+    navigation.navigate('MealDetails');
+  }
+
   return (
     <View style={styles.mealItem}>
       <Pressable
         android_ripple={{ color: '#ccc' }}
+        onPress={mealPressHandler}
         style={({ pressed }) => 
           // To get opacity effect in iOS when pressed
           // since android_ripple effect above doesn't work on iOS

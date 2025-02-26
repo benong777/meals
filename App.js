@@ -5,13 +5,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CategoryScreen from './screens/CategoriesScreen';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
+import MealDetailsScreen from './screens/MealDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
-      <StatusBar style='auto' />
+      <StatusBar style='light' />
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -30,14 +31,23 @@ export default function App() {
           <Stack.Screen
             name="MealsOverview"
             component={MealsOverviewScreen}
-            // // Dynamically set the screen header title using route/navigation
-            // // * Note: params below was provided when navigating from the previous screen (MealsCategories)
-            // options={({ route, navigation }) => {
-            //   const catId = route.params.categoryId;
-            //   return {
-            //     title: catId
-            //   }
-            // }}
+            /*
+            // Dynamically set the screen header title using route/navigation
+            // * Note: params below was provided when navigating from the previous screen (MealsCategories)
+            options={({ route, navigation }) => {
+              const catId = route.params.categoryId;
+              return {
+                title: catId
+              }
+            }}
+            */
+          />
+          <Stack.Screen
+            name="MealDetails"
+            component={MealDetailsScreen}
+            options={{
+              title: 'Meal Details',
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
