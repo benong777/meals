@@ -1,9 +1,13 @@
 import { View, Text, Pressable, Image, StyleSheet, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function MealItem({title, imageUrl, duration, complexity, affordability, navigation }) {
+function MealItem({title, imageUrl, duration, complexity, affordability, id}) {
+  const navigation = useNavigation();
+
   function mealPressHandler() {
-    console.log('Meal item pressed!');
-    navigation.navigate('MealDetails');
+    navigation.navigate('MealDetails', {
+      mealId: id,
+    });
   }
 
   return (
