@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Button } from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -47,6 +47,15 @@ export default function App() {
             component={MealDetailScreen}
             options={{
               title: 'Meal Details',
+              /*
+                Can create components/buttons in the header here, but do not have access to 
+                data in that screen. Can add it directly in that screen instead using the 
+                navigation prop and 'setOptions' similar to below. (see MealDetailScreen.js)
+              */
+              // headerRight: () => {
+              //   console.log('headerRight Button pressed!')
+              //   return <Button title='Login' />
+              // }
             }}
           />
         </Stack.Navigator>
